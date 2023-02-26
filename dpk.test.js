@@ -55,14 +55,14 @@ describe('deterministicPartitionKey', () => {
     expect(result).toBe(partitionKey);
   });
 
-  test("should return a partition key when given a string of length 256", () => {
+  test("should return a hash when given a string of length 256", () => {
     const input = "a".repeat(256);
     const expectedHash = "322031bac1d6554d4f68f8d2c9bbc3a38888aaf8f0bb1931b3e87ceaf5365d860775abee15c86dc44c0c33ef6c8f6458396af97e90ec8f51c657c2bffbd97dd3";
     const result = deterministicPartitionKey(input);
     expect(result).toBe(expectedHash);
   });
 
-  test("should return a partition key of length 128 when given a string of length 512", () => {
+  test("should return a hash of length 128 even when given a string of length 8192", () => {
     const input = "a".repeat(8192);
     const result = deterministicPartitionKey(input);
     expect(result.length).toEqual(128);
